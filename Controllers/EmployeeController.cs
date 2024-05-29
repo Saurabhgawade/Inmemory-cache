@@ -10,13 +10,13 @@ namespace Inmemoryu.Controllers
     {
         private readonly Interfaceemp _inter;
         private readonly IMemoryCache _memory;
-        private readonly ILogger<EmployeeController> _logger;
        
-        public EmployeeController(Interfaceemp inter,IMemoryCache memory,ILogger<EmployeeController> logger)
+       
+        public EmployeeController(Interfaceemp inter,IMemoryCache memory)
         {
             _inter = inter;
             _memory = memory;
-            _logger = logger;
+            
            
         }
 
@@ -26,12 +26,12 @@ namespace Inmemoryu.Controllers
             List<Employee> result = new List<Employee>();
            if(_memory.TryGetValue("empmem",out List<Employee> employ))
             {
-                _logger.LogInformation("from memory");
+                
                 return View(new MyView() { Employees = employ });
             }
             else
             {
-                _logger.LogInformation("from db");
+                
                 result = _inter.getAll();
                 var cacheentryoptions = new MemoryCacheEntryOptions()
                     .SetSlidingExpiration(TimeSpan.FromSeconds(30))
