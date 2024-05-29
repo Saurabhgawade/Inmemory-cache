@@ -1,0 +1,47 @@
+﻿@model Inmemoryu.Controllers.MyView
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<div>
+    <h4>MyView</h4>
+
+
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salry</th>
+        </tr>
+        @foreach(var item in Model.Employees)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Salary</td>
+            </tr>
+        }
+
+    </table>
+
+
+
+
+
+
+
+
+
+    @* <hr />
+    <dl class="row">
+    </dl> *@
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
